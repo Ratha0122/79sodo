@@ -24,7 +24,7 @@ function url() {
 
 
 
-    document.getElementsByClassName('header')[0].innerHTML = `
+document.getElementsByClassName('header')[0].innerHTML = `
     <div class=" from-zinc-800 to-gray-900 bg-gradient-to-t">
         <header class="max-w-6xl mx-auto p-2 flex justify-between items-center ">
             <div onclick="OpenMenu()" class="icon  md:hidden text-3xl text-white">
@@ -83,7 +83,7 @@ function url() {
 
 
 
-    document.getElementsByClassName('footer')[0].innerHTML = `
+document.getElementsByClassName('footer')[0].innerHTML = `
     <footer class="from-[#2a0b42] to-[#801414] bg-gradient-to-l px-4 py-10">
         <div class="max-w-6xl mx-auto">
 
@@ -144,7 +144,7 @@ function url() {
 `
 
 
-    document.getElementsByClassName('right-content')[0].innerHTML = `
+document.getElementsByClassName('right-content')[0].innerHTML = `
                     <h1 class="font-bold">BÀI VIẾT MỚI</h1>
                     <hr class="mt-2 border-solid w-8 border-[2px] rounded-2xl border-gray-400">
                     <a href="./lo-truot-la-gi.html" class="flex gap-4 mt-4">
@@ -183,17 +183,45 @@ function url() {
 `
 
 
-    const navbar = document.getElementById('nav');
-    function OpenMenu() {
-        navbar.classList.toggle('hidden')
-        if (!navbar.classList.contains('hidden')) {
-            navbar.scrollIntoView({ behavior: 'smooth' })
-        }
+const navbar = document.getElementById('nav');
+function OpenMenu() {
+    navbar.classList.toggle('hidden')
+    if (!navbar.classList.contains('hidden')) {
+        navbar.scrollIntoView({ behavior: 'smooth' })
     }
+}
 
-    function CloseMenu() {
-        navbar.classList.toggle('hidden')
-        if (!navbar.classList.contains('hidden')) {
-            navbar.scrollIntoView({ behavior: 'smooth' })
-        }
+function CloseMenu() {
+    navbar.classList.toggle('hidden')
+    if (!navbar.classList.contains('hidden')) {
+        navbar.scrollIntoView({ behavior: 'smooth' })
     }
+}
+window.onscroll = function() {makeHeaderSticky()};
+
+var header = document.querySelector(".header");
+var sticky = header.offsetTop;
+
+function makeHeaderSticky() {
+    if (window.pageYOffset > 250) {
+        header.classList.add("sticky")
+    } else {
+        header.classList.remove("sticky");
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    setActiveLink();
+});
+
+function setActiveLink() {
+    const links = document.querySelectorAll('nav a');
+    const currentUrl = window.location.href;
+
+    links.forEach(function(link) {
+        if (link.href === currentUrl) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
